@@ -15,7 +15,7 @@ resource "azurerm_traffic_manager_profile" "tm" {
   }
 }
 
-resource "azurerm_traffic_manager_endpoint" "primary" {
+resource "azurerm_traffic_manager" "primary" {
   name               = "primary-endpoint"
   profile_id         = azurerm_traffic_manager_profile.tm.id
   type               = "externalEndpoints"
@@ -23,7 +23,7 @@ resource "azurerm_traffic_manager_endpoint" "primary" {
   priority           = 1
 }
 
-resource "azurerm_traffic_manager_endpoint" "secondary" {
+resource "azurerm_traffic_manager" "secondary" {
   name       = "secondary-endpoint"
   profile_id = azurerm_traffic_manager_profile.tm.id
   type       = "externalEndpoints"

@@ -14,6 +14,8 @@ resource "azurerm_traffic_manager_profile" "tm" {
     port     = 80
     path     = "/"
   }
+
+  tags = local.common_tags
 }
 resource "azurerm_traffic_manager_azure_endpoint" "primary" {
   name       = "primary-endpoint"
@@ -28,6 +30,4 @@ resource "azurerm_traffic_manager_azure_endpoint" "secondary" {
 
   target_resource_id = azurerm_public_ip.secondary.id
   priority           = 2
-}
-  tags = local.common_tags
 }

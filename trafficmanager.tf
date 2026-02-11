@@ -16,17 +16,15 @@ resource "azurerm_traffic_manager_profile" "tm" {
   }
 }
 resource "azurerm_traffic_manager_azure_endpoint" "primary" {
-  name                = "primary-endpoint"
-  profile_name        = azurerm_traffic_manager_profile.tm.name
-  resource_group_name = azurerm_resource_group.rg.name
+  name       = "primary-endpoint"
+  profile_id = azurerm_traffic_manager_profile.tm.id
 
   target_resource_id = azurerm_public_ip.primary.id
   priority           = 1
 }
 resource "azurerm_traffic_manager_azure_endpoint" "secondary" {
-  name                = "secondary-endpoint"
-  profile_name        = azurerm_traffic_manager_profile.tm.name
-  resource_group_name = azurerm_resource_group.rg.name
+  name       = "secondary-endpoint"
+  profile_id = azurerm_traffic_manager_profile.tm.id
 
   target_resource_id = azurerm_public_ip.secondary.id
   priority           = 2
